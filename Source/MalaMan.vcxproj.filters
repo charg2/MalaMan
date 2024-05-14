@@ -40,11 +40,20 @@
     <ClCompile Include="EngineTypes.ixx">
       <Filter>Source\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Game.ixx">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Graphics.ixx">
+      <Filter>Source\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Game_.ixx">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Graphics_.ixx">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.ixx">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine_.ixx">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGlobal.ixx">
+      <Filter>Source\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

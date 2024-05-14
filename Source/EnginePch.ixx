@@ -24,6 +24,11 @@ export import <DirectXMath.h>;
 export import <DirectXTex/DirectXTex.h>;
 //export import <DirectXTex/DirectXTex.inl>;
 
+export constexpr auto D3D11_SDK_VERSION_               = D3D11_SDK_VERSION;
+export constexpr auto DXGI_USAGE_RENDER_TARGET_OUTPUT_ = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+export void CHECK( auto p ) { assert( SUCCEEDED( p ) ); }
+
+
 export using namespace DirectX;
 export using namespace Microsoft::WRL;
 

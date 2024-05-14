@@ -6,7 +6,8 @@
 
 import EnginePch;
 import EngineTypes;
-import Game;
+import Engine;
+import EngineGlobal;
 
 #define MAX_LOADSTRING 100
 
@@ -20,6 +21,9 @@ ATOM             MyRegisterClass( HINSTANCE );
 BOOL             InitInstance( HINSTANCE, i32 );
 LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
 
+/// <summary>
+/// 윈도우 진입점
+/// </summary>
 i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
                        _In_opt_ HINSTANCE hPrevInstance,
                        _In_     LPWSTR    lpCmdLine,
@@ -34,8 +38,8 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
         return FALSE;
     }
 
-    auto game = std::make_unique< Game >();
-    game->Initialize( GHWnd );
+    auto engine = std::make_unique< Engine >();
+    engine->Initialize( GHWnd );
 
     MSG msg{};
     while ( msg.message != WM_QUIT )
@@ -47,7 +51,8 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
         }
         else
         {
-            game->Update();
+            engine->Update();
+            engine->Render();
         }
     }
 
@@ -62,7 +67,7 @@ ATOM MyRegisterClass( HINSTANCE hInstance )
 {
     WNDCLASSEXW wcex
     {
-        .cbSize = sizeof( WNDCLASSEX ),
+        .cbSize         = sizeof( WNDCLASSEX ),
         .style          = CS_HREDRAW | CS_VREDRAW,
         .lpfnWndProc    = ::WndProc,
         .cbClsExtra     = 0,
@@ -87,7 +92,7 @@ ATOM MyRegisterClass( HINSTANCE hInstance )
 /// </summary>
 BOOL InitInstance( HINSTANCE hInstance, int nCmdShow )
 {
-    RECT windowRect{ 0, 0, 800, 600 };
+    RECT windowRect{ 0, 0, GWindowWidth, GWindowHeight };
     ::AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE );
 
     GInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.

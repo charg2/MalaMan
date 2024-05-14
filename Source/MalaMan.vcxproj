@@ -145,10 +145,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EngineGlobal.ixx" />
     <ClCompile Include="EnginePch.ixx" />
     <ClCompile Include="EngineTypes.ixx" />
-    <ClCompile Include="Game.ixx" />
-    <ClCompile Include="Game_.ixx" />
+    <ClCompile Include="Engine.ixx" />
+    <ClCompile Include="Engine_.ixx" />
+    <ClCompile Include="Graphics.ixx" />
+    <ClCompile Include="Graphics_.ixx" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
