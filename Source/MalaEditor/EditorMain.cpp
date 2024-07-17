@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "main.h"
 
+#pragma comment( lib, "F:\\Dev\\MalaMan\\x64\\Release\\MalaEngine" )
+
+import <memory>;
 import EnginePch;
 import EngineTypes;
 import Engine;
@@ -18,7 +21,7 @@ HWND      GHWnd;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM             MyRegisterClass( HINSTANCE );
-BOOL             InitInstance( HINSTANCE, i32 );
+bool             InitInstance( HINSTANCE, i32 );
 LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
 
 /// <summary>
@@ -32,14 +35,13 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
     // 윈도우 창 정보 등록
     ::MyRegisterClass( hInstance );
 
+    GEngine = new Engine();
+
     // 윈도우 창 생성
     if ( !::InitInstance( hInstance, nCmdShow ) )
-    {
         return FALSE;
-    }
 
-    auto engine = std::make_unique< Engine >();
-    engine->Initialize( GHWnd );
+    GEngine->Initialize( GHWnd );
 
     MSG msg{};
     while ( msg.message != WM_QUIT )
@@ -51,10 +53,13 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
         }
         else
         {
-            engine->Update();
-            engine->Render();
+            GEngine->Run();
+            //engine->Update();
+            //engine->Render();
         }
     }
+
+    delete GEngine;
 
     return static_cast< i32 >( msg.wParam );
 }
@@ -86,35 +91,37 @@ ATOM MyRegisterClass( HINSTANCE hInstance )
 
 /// <summary>
 /// 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-/// 
+///
 /// 이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
 //  주 프로그램 창을 만든 다음 표시합니다.
 /// </summary>
-BOOL InitInstance( HINSTANCE hInstance, int nCmdShow )
+bool InitInstance( HINSTANCE hInstance, int nCmdShow )
 {
     RECT windowRect{ 0, 0, GWindowWidth, GWindowHeight };
     ::AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE );
 
     GInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-    GHWnd = CreateWindowW( L"MalaMan", 
-        L"Title", 
+    GHWnd = CreateWindowW( L"MalaMan",
+        L"Title",
         WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 
-        0, 
-        windowRect.right - windowRect.left, 
-        windowRect.bottom - windowRect.top, 
-        nullptr, 
-        nullptr, 
-        hInstance, 
+        CW_USEDEFAULT,
+        0,
+        windowRect.right - windowRect.left,
+        windowRect.bottom - windowRect.top,
+        nullptr,
+        nullptr,
+        hInstance,
         nullptr );
 
    if ( !GHWnd )
-      return FALSE;
+      return false;
+
+   GEngine->Initialize( GHWnd );
 
    ::ShowWindow( GHWnd, nCmdShow );
    ::UpdateWindow( GHWnd );
 
-   return TRUE;
+   return true;
 }
 
 /// <summary>
@@ -142,7 +149,8 @@ LRESULT CALLBACK WndProc( HWND GHWnd, UINT message, WPARAM wParam, LPARAM lParam
         {
             PAINTSTRUCT ps;
             HDC hdc = ::BeginPaint( GHWnd, &ps );
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+
             ::EndPaint( GHWnd, &ps );
         }
         break;

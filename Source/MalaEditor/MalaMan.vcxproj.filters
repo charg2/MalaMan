@@ -15,6 +15,9 @@
     <Filter Include="Source\Game">
       <UniqueIdentifier>{67f1e5b1-398d-4fab-8565-1d8e65601cb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Shader">
+      <UniqueIdentifier>{aecd115b-c956-4164-8d06-c67f37761283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -34,27 +37,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="EnginePch.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTypes.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics_.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine_.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineGlobal.ixx">
-      <Filter>Source\Engine</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MalaMan.rc">
@@ -68,5 +50,10 @@
     <Image Include="MalaMan.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Default.hlsl">
+      <Filter>Source\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

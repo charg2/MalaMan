@@ -1,6 +1,7 @@
 export module EnginePch;
 
 
+export import EngineTypes;
 
 /// <summary>
 /// STL
