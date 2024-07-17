@@ -159,6 +159,7 @@
     <ClCompile Include="GameObject.ixx" />
     <ClCompile Include="Graphics.ixx" />
     <ClCompile Include="Graphics_.ixx" />
+    <ClCompile Include="Input.ixx" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MalaEngine.cpp" />
   </ItemGroup>

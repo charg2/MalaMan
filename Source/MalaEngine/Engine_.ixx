@@ -3,6 +3,7 @@ export module Engine:Impl;
 import EnginePch;
 import Engine;
 import Graphics;
+import Input;
 import <format>;
 
 
@@ -21,6 +22,7 @@ void Engine::Initialize( HWND hwnd )
 
 	_graphics = std::make_shared< Graphics >( hwnd );
 
+	//Input::Initialize();
 	CreateGeometry();
 	CreateInputLayout();
 }
