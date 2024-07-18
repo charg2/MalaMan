@@ -7,6 +7,7 @@ export import EngineTypes;
 /// STL
 /// </summary>
 export import <memory>;
+export import <string>;
 
 /// <summary>
 /// À©µµ¿ì
@@ -41,3 +42,5 @@ export using namespace Microsoft::WRL;
 #else
 #pragma comment( lib, "DirectXTex\\DirectXTex.lib" )
 #endif
+
+//export import Component;

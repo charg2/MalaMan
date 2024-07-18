@@ -18,7 +18,11 @@ enum class EKeyCode
 	Q, W, E, R, T, Y, U, I, O, P,
 	A, S, D, F, G, H, J, K, L,
 	Z, X, C, V, B, N, M,
+	Zero,
+	//Left, Right, Up, Down
+
 	End,
+	
 };
 
 class Input
@@ -49,8 +53,9 @@ int ASCII[ (UINT)EKeyCode::End ] =
 	'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 	'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 	'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+	'0'
 };
-
+//VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN
 
 void Input::Initialize()
 {
@@ -64,8 +69,6 @@ void Input::Initialize()
 		key.keyCode = (EKeyCode)i;
 	}
 }
-
-
 
 
 void Input::Update()

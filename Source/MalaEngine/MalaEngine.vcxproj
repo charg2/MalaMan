@@ -151,17 +151,22 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component.ixx" />
     <ClCompile Include="Engine.ixx" />
     <ClCompile Include="EngineGlobal.ixx" />
     <ClCompile Include="EnginePch.ixx" />
     <ClCompile Include="EngineTypes.ixx" />
     <ClCompile Include="Engine_.ixx" />
+    <ClCompile Include="Time.ixx" />
+    <ClCompile Include="Time_.ixx" />
+    <ClCompile Include="Transform_.ixx" />
+    <ClCompile Include="Entity.ixx" />
     <ClCompile Include="GameObject.ixx" />
     <ClCompile Include="Graphics.ixx" />
     <ClCompile Include="Graphics_.ixx" />
     <ClCompile Include="Input.ixx" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="MalaEngine.cpp" />
+    <ClCompile Include="Transform.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
