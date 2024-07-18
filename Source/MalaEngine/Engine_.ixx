@@ -22,7 +22,7 @@ void Engine::Initialize( HWND hwnd )
 
 	_graphics = std::make_shared< Graphics >( hwnd );
 
-	//Input::Initialize();
+	Input::Initialize();
 	CreateGeometry();
 	CreateInputLayout();
 }
@@ -51,6 +51,14 @@ void Engine::Render()
 	//_graphics->RenderBegin();
 
 	//_graphics->RenderEnd();
+}
+
+void Engine::Destroy()
+{
+}
+
+void Engine::Release()
+{
 }
 
 void Engine::ShowFPS()

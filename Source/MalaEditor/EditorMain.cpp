@@ -11,6 +11,8 @@ import EnginePch;
 import EngineTypes;
 import Engine;
 import EngineGlobal;
+import Scene;
+import SceneManager;
 
 #define MAX_LOADSTRING 100
 
@@ -23,6 +25,7 @@ HWND      GHWnd;
 ATOM             MyRegisterClass( HINSTANCE );
 bool             InitInstance( HINSTANCE, i32 );
 LRESULT CALLBACK WndProc( HWND, UINT, WPARAM, LPARAM );
+void LoadScene( const std::wstring& name );
 
 /// <summary>
 /// 윈도우 진입점
@@ -161,4 +164,12 @@ LRESULT CALLBACK WndProc( HWND GHWnd, UINT message, WPARAM wParam, LPARAM lParam
         return DefWindowProc( GHWnd, message, wParam, lParam );
     }
     return 0;
+}
+
+class TestScene : public Scene
+{};
+
+void LoadScene( const std::wstring& name )
+{
+	SceneManager::CreateScene< TestScene >( name );
 }

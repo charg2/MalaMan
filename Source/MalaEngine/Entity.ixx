@@ -2,7 +2,7 @@ export module Entity;
 
 import EnginePch;
 
-class Entity
+export class Entity
 {
 public:
     Entity() = default;

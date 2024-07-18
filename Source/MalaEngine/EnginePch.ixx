@@ -6,6 +6,7 @@ export import EngineTypes;
 /// <summary>
 /// STL
 /// </summary>
+export import <map>;
 export import <memory>;
 export import <string>;
 
@@ -44,3 +45,4 @@ export using namespace Microsoft::WRL;
 #endif
 
 //export import Component;
+//export import Entity;

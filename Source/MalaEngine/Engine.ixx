@@ -21,6 +21,8 @@ public:
 	void Update();
 	void LateUpdate();
 	void Render();
+	void Destroy();
+	void Release();
 
 	void ShowFPS();
 	void CreateGeometry();

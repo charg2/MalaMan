@@ -157,6 +157,10 @@
     <ClCompile Include="EnginePch.ixx" />
     <ClCompile Include="EngineTypes.ixx" />
     <ClCompile Include="Engine_.ixx" />
+    <ClCompile Include="Scene.ixx" />
+    <ClCompile Include="SceneManager.ixx" />
+    <ClCompile Include="SceneManager_.ixx" />
+    <ClCompile Include="Scene_.ixx" />
     <ClCompile Include="Time.ixx" />
     <ClCompile Include="Time_.ixx" />
     <ClCompile Include="Transform_.ixx" />
