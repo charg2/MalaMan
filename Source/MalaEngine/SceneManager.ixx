@@ -22,8 +22,14 @@ public:
 	template< typename T >
 	static Scene* LoadScene( const std::wstring& name )
 	{
-		return {};
+        auto iter = _scenes.find( name );
+        if ( iter == _scenes.end() )
+            return nullptr;
+
+        _activeScene = iter->second;
+		return _activeScene;
 	}
+
 public:
 	SceneManager() = default;
 	virtual ~SceneManager() = default;

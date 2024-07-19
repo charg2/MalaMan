@@ -22,8 +22,10 @@ public:
 	virtual void Destroy();
 	virtual void Release();
 
+	void AddGameObject( GameObject* gameObject );
 
-	std::vector< GameObject* > _objects;
+private:
+	std::vector< GameObject* > _objects{};
 };
 
 }
