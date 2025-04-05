@@ -1,10 +1,6 @@
-export module Scene:impl;
-
-
 import EnginePch;
 import Scene;
 import GameObject;
-
 
 
 void Scene::Update()

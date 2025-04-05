@@ -19,13 +19,13 @@ public:
 	ComPtr< ID3D11DeviceContext > GetDeviceContext() { return _deviceContext; }
 
 private:
-	/// À©µµ¿ì ÇÚµé
+	/// ìœˆë„ìš° í•¸ë“¤
 	HWND _hwnd;
 
-	/// Dx µğ¹ÙÀÌ½º
+	/// Dx ë””ë°”ì´ìŠ¤
 	ComPtr< ID3D11Device > _device{};
 
-	/// Dx µğ¹ÙÀÌ½º »óÅÂ
+	/// Dx ë””ë°”ì´ìŠ¤ ìƒíƒœ
 	ComPtr< ID3D11DeviceContext > _deviceContext{};
 
 

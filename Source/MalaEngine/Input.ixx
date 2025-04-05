@@ -22,7 +22,7 @@ enum class EKeyCode
 	//Left, Right, Up, Down
 
 	End,
-	
+
 };
 
 class Input
@@ -75,7 +75,7 @@ void Input::Update()
 {
 	for ( size_t i = 0; i < _keys.size(); i++ )
 	{
-		//Å°°¡ ´­·È´Ù
+		//í‚¤ê°€ ëˆŒë ¸ë‹¤
 		if ( ::GetAsyncKeyState( ASCII[ i ] ) & 0x8000 )
 		{
 			if ( _keys[ i ].pressed )
@@ -85,7 +85,7 @@ void Input::Update()
 
 			_keys[ i ].pressed = true;
 		}
-		else // Å°°¡ ¾È´­·È´Ù.
+		else // í‚¤ê°€ ì•ˆëˆŒë ¸ë‹¤.
 		{
 			if ( _keys[ i ].pressed )
 				_keys[ i ].state = EKeyState::Up;

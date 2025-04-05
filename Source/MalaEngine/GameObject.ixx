@@ -9,9 +9,19 @@ class Component;
 
 class GameObject
 {
+    enum class EState
+    {
+        Active, ///
+        Paused, ///
+        Dead,   ///
+        End     ///
+    };
+
+
 public:
 	GameObject() = default;
 	virtual ~GameObject() = default;
+
 
     virtual void Initialize() = 0;
     virtual void Update() = 0;
@@ -50,6 +60,7 @@ private:
 	XMFLOAT2 _scale{};
 	XMFLOAT2 _rotation{};
 
+    EState _state{};
     std::vector< Component* > _components;
 };
 

@@ -14,10 +14,10 @@ public:
 	~Engine();
 
 public:
-	/// ÃÊ±âÈ­ÇÑ´Ù.
+	/// ì´ˆê¸°í™”í•œë‹¤.
 	void Initialize( HWND hwnd );
 
-	void Run();
+	MSG Run();
 	void Update();
 	void LateUpdate();
 	void Render();
@@ -34,15 +34,15 @@ public:
 		ComPtr< ID3DBlob >& blob );
 
 private:
-	/// À©µµ¿ìÀÇ ÇÚµé
+	/// ìœˆë„ìš°ì˜ í•¸ë“¤
 	HWND _hwnd{};
 	HDC _hdc;
 
-	/// À©µµ¿ì Å©±â
+	/// ìœˆë„ìš° í¬ê¸°
 	u32 _width{};
 	u32 _height{};
 
-	/// ±×·¡ÇÈ½ºÀÇ Æ÷ÀÎÅÍ
+	/// ê·¸ë˜í”½ìŠ¤ì˜ í¬ì¸í„°
 	std::shared_ptr< Graphics > _graphics{};
 	std::vector< Vertex > _vertices{};
 	ComPtr< ID3D11Buffer > _vertexBuffer{};

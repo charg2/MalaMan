@@ -148,27 +148,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component.ixx" />
+    <ClCompile Include="DontDestoryOnLoad.ixx" />
+    <ClCompile Include="DontDestoryOnLoad.cpp" />
     <ClCompile Include="Engine.ixx" />
     <ClCompile Include="EngineGlobal.ixx" />
     <ClCompile Include="EnginePch.ixx" />
     <ClCompile Include="EngineTypes.ixx" />
-    <ClCompile Include="Engine_.ixx" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Math.ixx" />
     <ClCompile Include="Scene.ixx" />
     <ClCompile Include="SceneManager.ixx" />
-    <ClCompile Include="SceneManager_.ixx" />
-    <ClCompile Include="Scene_.ixx" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Time.ixx" />
-    <ClCompile Include="Time_.ixx" />
-    <ClCompile Include="Transform_.ixx" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Entity.ixx" />
     <ClCompile Include="GameObject.ixx" />
     <ClCompile Include="Graphics.ixx" />
-    <ClCompile Include="Graphics_.ixx" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.ixx" />
     <ClCompile Include="MalaEngine.cpp" />
     <ClCompile Include="Transform.ixx" />

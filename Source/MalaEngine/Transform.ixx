@@ -8,8 +8,8 @@ export
 
 struct Pos
 {
-	int mX;
-	int mY;
+	int x;
+	int y;
 };
 
 class Transform : public Component
@@ -23,13 +23,12 @@ public:
 	void LateUpdate() final;
 	void Render( HDC hdc ) final;
 
-	void SetPos( int x, int y ) { mX = x; mY = y; }
-	int GetX() { return mX; }
-	int GetY() { return mY; }
+	void SetPos( int x, int y ) { x = x; y = y; }
+	int GetX() { return _pos.x; }
+	int GetY() { return _pos.y; }
 
 private:
-	int mX;
-	int mY;
+	Pos _pos;
 };
 
 }

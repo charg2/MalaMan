@@ -1,86 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
+    <Filter Include="Source">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MalaEngine.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Engine.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Engine_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="EngineGlobal.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="EnginePch.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="EngineTypes.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Input.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Component.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Entity.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Transform.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Transform_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Time.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Time_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Scene_.ixx">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Scene.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Math.ixx">
-      <Filter>소스 파일</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DontDestoryOnLoad.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DontDestoryOnLoad.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

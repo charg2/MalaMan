@@ -1,11 +1,10 @@
-export module SceneManager:impl;
-
 import EnginePch;
 import SceneManager;
-
+import DontDestoryOnLoad;
 
 void SceneManager::Initialize()
 {
+	_dontDestroyOnLoad = CreateScene< DontDestroyOnLoad >( L"DontDestroyOnLoad" );
 }
 
 void SceneManager::Update()

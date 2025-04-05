@@ -1,4 +1,4 @@
-﻿// MalaMan.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+// MalaMan.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
@@ -44,27 +44,7 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
     if ( !::InitInstance( hInstance, nCmdShow ) )
         return FALSE;
 
-    GEngine->Initialize( GHWnd );
-
-    MSG msg{};
-    while ( msg.message != WM_QUIT )
-    {
-        if ( ::PeekMessage( &msg, nullptr, 0, 0, PM_REMOVE ) )
-        {
-            ::TranslateMessage( &msg );
-            ::DispatchMessage( &msg );
-        }
-        else
-        {
-            GEngine->Run();
-            //engine->Update();
-            //engine->Render();
-        }
-    }
-
-    delete GEngine;
-
-    return static_cast< i32 >( msg.wParam );
+    return GEngine->Run().wParam;
 }
 
 
@@ -98,7 +78,7 @@ ATOM MyRegisterClass( HINSTANCE hInstance )
 /// 이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
 //  주 프로그램 창을 만든 다음 표시합니다.
 /// </summary>
-bool InitInstance( HINSTANCE hInstance, int nCmdShow )
+bool InitInstance( HINSTANCE hInstance, i32 nCmdShow )
 {
     RECT windowRect{ 0, 0, GWindowWidth, GWindowHeight };
     ::AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW, FALSE );
@@ -120,7 +100,7 @@ bool InitInstance( HINSTANCE hInstance, int nCmdShow )
       return false;
 
    GEngine->Initialize( GHWnd );
-
+   LoadScene( L"Test" );
    ::ShowWindow( GHWnd, nCmdShow );
    ::UpdateWindow( GHWnd );
 
@@ -171,5 +151,7 @@ class TestScene : public Scene
 
 void LoadScene( const std::wstring& name )
 {
-	SceneManager::CreateScene< TestScene >( name );
+    SceneManager::Initialize();
+    SceneManager::CreateScene< TestScene >( name );
+    SceneManager::LoadScene< TestScene >( name );
 }

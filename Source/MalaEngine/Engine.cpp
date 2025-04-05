@@ -1,10 +1,8 @@
-export module Engine:Impl;
-
 import EnginePch;
 import Engine;
 import Graphics;
 import Input;
-import <format>;
+import SceneManager;
 
 
 Engine::Engine()
@@ -27,34 +25,62 @@ void Engine::Initialize( HWND hwnd )
 	CreateInputLayout();
 }
 
-void Engine::Run()
+enum
 {
-	Update();
-	LateUpdate();
-	Render();
+	WM_QUIT   = 0x0012,
+	PM_REMOVE = 0x0001
+};
+
+MSG Engine::Run()
+{
+	MSG msg{};
+	while ( msg.message != WM_QUIT )
+	{
+		if ( ::PeekMessageW( &msg, nullptr, 0, 0, PM_REMOVE ) )
+		{
+			::TranslateMessage( &msg );
+			::DispatchMessageW( &msg );
+		}
+		else
+		{
+			Update();
+			LateUpdate();
+			Render();
+		}
+	}
+
+	return msg;
 }
 
 void Engine::Update()
 {
+	Input::Update();
+	//Time::Update();
+
+	SceneManager::Update();
 }
 
 void Engine::LateUpdate()
 {
+	SceneManager::LateUpdate();
 }
 
 void Engine::Render()
 {
-
 	Rectangle( _hdc, 0, 0, 100, 100 );
-	//// TODO: ø©±‚ø° hdc∏¶ ªÁøÎ«œ¥¬ ±◊∏Æ±‚ ƒ⁄µÂ∏¶ √ﬂ∞°«’¥œ¥Ÿ...
+	//// TODO: Ïó¨Í∏∞Ïóê hdcÎ•º ÏÇ¨Ïö©ÌïòÎäî Í∑∏Î¶¨Í∏∞ ÏΩîÎìúÎ•º Ï∂îÍ∞ÄÌï©ÎãàÎã§...
 
 	//_graphics->RenderBegin();
 
 	//_graphics->RenderEnd();
+
+
+	SceneManager::Render( _hdc );
 }
 
 void Engine::Destroy()
 {
+	SceneManager::LateUpdate();
 }
 
 void Engine::Release()
@@ -104,11 +130,11 @@ void Engine::CreateGeometry()
 
 void Engine::CreateInputLayout()
 {
-	/// Vertex¿« ±∏¡∂ø° ¥Î«— π¶ªÁ
+	/// VertexÏùò Íµ¨Ï°∞Ïóê ÎåÄÌïú Î¨òÏÇ¨
 	D3D11_INPUT_ELEMENT_DESC layout[]
 	{
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }, // Color∞° 12πŸ¿Ã∆Æ ¿ßƒ°
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }, // ColorÍ∞Ä 12Î∞îÏù¥Ìä∏ ÏúÑÏπò
 	};
 
 	const i32 count = sizeof( layout ) / sizeof( D3D11_INPUT_ELEMENT_DESC );

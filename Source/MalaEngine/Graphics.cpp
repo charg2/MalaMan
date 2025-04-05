@@ -1,16 +1,12 @@
-export module Graphics:Impl;
-
 import EnginePch;
 import EngineGlobal;
 import Graphics;
 
-/// <summary>
-/// »ı¼ºÀÚ
-/// </summary>
+
 Graphics::Graphics( HWND hwnd )
 : _hwnd{ hwnd }
 {
-	// »ı¼º°ú µ¿½Ã¿¡ Device, DeviceContext, Viewport¸¦ »ı¼ºÇØÁİ´Ï´Ù.
+	// ìƒì„±ê³¼ ë™ì‹œì— Device, DeviceContext, Viewportë¥¼ ìƒì„±í•´ì¤ë‹ˆë‹¤.
 	CreateDeviceAndSwapChain();
 	CreateRenderTargetView();
 	SetViewport();
@@ -30,17 +26,17 @@ void Graphics::RenderEnd()
 }
 
 /// <summary>
-/// µğ¹ÙÀÌ½º¿Í ½º¿ÒÃ¼ÀÎÀ» »ı¼ºÇÑ´Ù.
+/// ë””ë°”ì´ìŠ¤ì™€ ìŠ¤ì™‘ì²´ì¸ì„ ìƒì„±í•œë‹¤.
 /// </summary>
 void Graphics::CreateDeviceAndSwapChain()
 {
-	// descÀÇ ³»¿ëÀ» ´Ù½Ã Ã¤¿öÁİ´Ï´Ù.
-	/// ´õºí ¹öÆÛ¸µ
+	// descì˜ ë‚´ìš©ì„ ë‹¤ì‹œ ì±„ì›Œì¤ë‹ˆë‹¤.
+	/// ë”ë¸” ë²„í¼ë§
 	auto desc = DXGI_SWAP_CHAIN_DESC
 	{
 		.BufferDesc =
-		{ 
-			.Width  = GWindowWidth, 
+		{
+			.Width  = GWindowWidth,
 			.Height = GWindowHeight,
 
 			.RefreshRate{ .Numerator = 60, .Denominator = 1 },
@@ -60,7 +56,7 @@ void Graphics::CreateDeviceAndSwapChain()
 		.Flags        = 0
 	};
 
-	// Device¿Í SwapChainÀ» »ı¼º
+	// Deviceì™€ SwapChainì„ ìƒì„±
 	HRESULT hr = ::D3D11CreateDeviceAndSwapChain(
 		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,

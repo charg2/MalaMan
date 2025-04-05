@@ -40,25 +40,9 @@ public:
 	static void Render( HDC hdec );
 
 private:
-	static std::map< std::wstring, Scene* > _scenes;
+	inline static std::map< std::wstring, Scene* > _scenes;
 	inline static Scene* _activeScene{};
 	inline static Scene* _dontDestroyOnLoad{};
 };
 
-}
-
-void SceneManager::Initialize()
-{
-}
-
-void SceneManager::Update()
-{
-}
-
-void SceneManager::LateUpdate()
-{
-}
-
-void SceneManager::Render( HDC hdec )
-{
 }

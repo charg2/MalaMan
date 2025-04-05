@@ -1,15 +1,13 @@
-export module Time_;
-
 import EnginePch;
 import Time;
 
 
 void Time::Initailize()
 {
-    // Cpu °íÀ¯ Áøµ¿¼ö
+    // Cpu ê³ ìœ  ì§„ë™ìˆ˜
     QueryPerformanceFrequency( &CpuFrequency );
 
-    // ÇÁ·Î±×·¥ÀÌ ½ÃÀÛ ÇßÀ» ¶§ ÇöÀç Áøµ¿¼ö
+    // í”„ë¡œê·¸ë¨ì´ ì‹œì‘ í–ˆì„ ë•Œ í˜„ì¬ ì§„ë™ìˆ˜
     QueryPerformanceCounter( &PrevFrequency );
 }
 
