@@ -2,6 +2,7 @@ import EnginePch;
 import Engine;
 import Graphics;
 import Input;
+import Time;
 import SceneManager;
 
 
@@ -23,6 +24,7 @@ void Engine::Initialize( HWND hwnd )
 	Input::Initialize();
 	CreateGeometry();
 	CreateInputLayout();
+
 }
 
 enum
@@ -31,32 +33,17 @@ enum
 	PM_REMOVE = 0x0001
 };
 
-MSG Engine::Run()
+void Engine::Run()
 {
-	MSG msg{};
-	while ( msg.message != WM_QUIT )
-	{
-		if ( ::PeekMessageW( &msg, nullptr, 0, 0, PM_REMOVE ) )
-		{
-			::TranslateMessage( &msg );
-			::DispatchMessageW( &msg );
-		}
-		else
-		{
-			Update();
-			LateUpdate();
-			Render();
-		}
-	}
-
-	return msg;
+	Update();
+	LateUpdate();
+	Render();
 }
 
 void Engine::Update()
 {
 	Input::Update();
-	//Time::Update();
-
+	Time::Update();
 	SceneManager::Update();
 }
 
@@ -67,15 +54,18 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-	Rectangle( _hdc, 0, 0, 100, 100 );
+	//Rectangle( _hdc, 0, 0, 100, 100 );
 	//// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-
-	//_graphics->RenderBegin();
-
-	//_graphics->RenderEnd();
+	_graphics->RenderBegin();
 
 
-	SceneManager::Render( _hdc );
+    CreateGeometry();
+    CreateInputLayout();
+
+	SceneManager::Render();
+
+	_graphics->RenderEnd();
+
 }
 
 void Engine::Destroy()
@@ -99,13 +89,12 @@ void Engine::CreateGeometry()
 	_vertices.resize( 3 );
 
 	_vertices[ 0 ].position = { 0.0f, 0.5f, 0.f };
-	_vertices[ 1 ].position = { 0.0f, 0.5f, 0.f };
-	_vertices[ 2 ].position = { 1.0f, 0.0f, 1.f };
+	_vertices[ 1 ].position = { 0.0f, -0.5f, 0.f };
+	_vertices[ 2 ].position = { -0.5f, -0.5f, 0.f };
 
 	_vertices[ 0 ].color = { 1, 0, 0, 1 };
 	_vertices[ 1 ].color = { 1, 0, 0, 1 };
 	_vertices[ 2 ].color = { 1, 0, 0, 1 };
-
 
 	D3D11_BUFFER_DESC desc
 	{
@@ -117,13 +106,22 @@ void Engine::CreateGeometry()
 		.StructureByteStride = 0
 	};
 
-
 	D3D11_SUBRESOURCE_DATA data
 	{
 		.pSysMem          = _vertices.data(),
 		.SysMemPitch      = 0,
 		.SysMemSlicePitch = 0
 	};
+
+    LoadShaderFromFile( L"Default.hlsl", "VS", "vs_5_0", _vsBlob );
+    _graphics->GetDevice()->CreateVertexShader(
+        _vsBlob->GetBufferPointer(),
+        _vsBlob->GetBufferSize(), nullptr, _vertexShader.GetAddressOf() );
+
+    LoadShaderFromFile( L"Default.hlsl", "PS", "ps_5_0", _psBlob );
+    _graphics->GetDevice()->CreatePixelShader(
+        _psBlob->GetBufferPointer(),
+        _psBlob->GetBufferSize(), nullptr, _pixelShader.GetAddressOf() );
 
 	_graphics->GetDevice()->CreateBuffer( &desc, &data, _vertexBuffer.GetAddressOf() );
 }
@@ -138,13 +136,28 @@ void Engine::CreateInputLayout()
 	};
 
 	const i32 count = sizeof( layout ) / sizeof( D3D11_INPUT_ELEMENT_DESC );
-	_graphics->GetDevice()->CreateInputLayout( layout, count, nullptr, 0, nullptr );// _inputLayout.GetAddressOf() );
+	_graphics->GetDevice()->CreateInputLayout( layout, count, _vsBlob->GetBufferPointer(), _vsBlob->GetBufferSize(), _inputLayout.GetAddressOf() );
+
+    // IA
+    u32 stride = sizeof( Vertex );
+    u32 offset = 0;
+    _graphics->GetDeviceContext()->IASetVertexBuffers( 0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset );
+    _graphics->GetDeviceContext()->IASetInputLayout( _inputLayout.Get() );
+    _graphics->GetDeviceContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+    _graphics->GetDeviceContext()->VSSetShader( _vertexShader.Get(), nullptr, 0 );
+    _graphics->GetDeviceContext()->PSSetShader( _pixelShader.Get(), nullptr, 0 );
+    _graphics->GetDeviceContext()->Draw( 3, 0 );
 }
 
-void Engine::LoadShaderFromFile( const std::wstring& path, const std::string& name, const std::string& version, ComPtr<ID3DBlob>& blob )
+void Engine::LoadShaderFromFile(
+    const std::wstring&       path,
+    const std::string&        name,
+    const std::string&        version,
+          ComPtr< ID3DBlob >& blob )
 {
 	const u32 flags = ( 1 << 2 );
 
-	::D3DCompileFromFile( path.c_str(), nullptr, nullptr, name.c_str(), version.c_str(), 0, 0, blob.GetAddressOf(), nullptr );
+	HRESULT hr = ::D3DCompileFromFile( path.c_str(), nullptr, nullptr, name.c_str(), version.c_str(), 0, 0, blob.GetAddressOf(), nullptr );
 
+    CHECK( hr );
 }

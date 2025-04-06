@@ -81,5 +81,11 @@
     <ClCompile Include="DontDestoryOnLoad.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

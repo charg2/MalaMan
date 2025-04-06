@@ -5,6 +5,7 @@ import Graphics;
 
 Graphics::Graphics( HWND hwnd )
 : _hwnd{ hwnd }
+, _clearColor{ 0.2f, 0.2f, 0.2f, 1.0f }
 {
 	// 생성과 동시에 Device, DeviceContext, Viewport를 생성해줍니다.
 	CreateDeviceAndSwapChain();
@@ -16,6 +17,7 @@ void Graphics::RenderBegin()
 {
 	_deviceContext->OMSetRenderTargets( 1, _renderTargetView.GetAddressOf(), nullptr );
 	_deviceContext->ClearRenderTargetView( _renderTargetView.Get(), _clearColor );
+    //_deviceContext->ClearDepthStencilView( _depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0 );
 	_deviceContext->RSSetViewports( 1, &_viewport );
 }
 
@@ -50,8 +52,8 @@ void Graphics::CreateDeviceAndSwapChain()
 
 		.BufferUsage  = DXGI_USAGE_RENDER_TARGET_OUTPUT_,
 		.BufferCount  = 1,
-		.OutputWindow = _hwnd,
-		.Windowed     = true,
+		.OutputWindow = _hwnd, // 버퍼를 출력할 윈도우
+		.Windowed     = true, // 윈도우, 전체화면 모드
 		.SwapEffect   = DXGI_SWAP_EFFECT_DISCARD,
 		.Flags        = 0
 	};
@@ -69,8 +71,7 @@ void Graphics::CreateDeviceAndSwapChain()
 		_swapChain.GetAddressOf(),
 		_device.GetAddressOf(),
 		nullptr,
-		_deviceContext.GetAddressOf()
-	);
+		_deviceContext.GetAddressOf() );
 
 	CHECK( hr );
 }

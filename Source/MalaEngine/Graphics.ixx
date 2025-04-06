@@ -22,16 +22,32 @@ private:
 	/// 윈도우 핸들
 	HWND _hwnd;
 
-	/// Dx 디바이스
+    /// <summary>
+    /// Dx 디바이스
+    /// </summary>
 	ComPtr< ID3D11Device > _device{};
 
-	/// Dx 디바이스 상태
+	/// <summary>
+	/// Dx 디바이스 문맥
+	/// </summary>
 	ComPtr< ID3D11DeviceContext > _deviceContext{};
 
+    /// <summary>
+    /// 스왑체인
+    /// </summary>
+    ComPtr< IDXGISwapChain > _swapChain{};
 
-	ComPtr< IDXGISwapChain > _swapChain = nullptr;
+    /// <summary>
+    /// 스왑체인
+    /// </summary>
 	ComPtr< ID3D11RenderTargetView > _renderTargetView;
+
+    /// <summary>
+    /// 스왑체인
+    /// </summary>
+    ComPtr< ID3D11DepthStencilView > _depthStencilView;
 	D3D11_VIEWPORT _viewport{};
 	float _clearColor[ 4 ]{};
+
 };
 

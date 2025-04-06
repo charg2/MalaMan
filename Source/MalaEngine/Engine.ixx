@@ -17,7 +17,7 @@ public:
 	/// 초기화한다.
 	void Initialize( HWND hwnd );
 
-	MSG Run();
+	void Run();
 	void Update();
 	void LateUpdate();
 	void Render();
@@ -33,6 +33,8 @@ public:
 		const std::string& version,
 		ComPtr< ID3DBlob >& blob );
 
+    bool IsRunning() { return _running; }
+
 private:
 	/// 윈도우의 핸들
 	HWND _hwnd{};
@@ -47,10 +49,11 @@ private:
 	std::vector< Vertex > _vertices{};
 	ComPtr< ID3D11Buffer > _vertexBuffer{};
 
-	ComPtr< ID3D11VertexShader > _vertexShader{};
+    ComPtr< ID3D11VertexShader > _vertexShader{};
 	ComPtr< ID3DBlob > _vsBlob{};
+    ComPtr< ID3D11PixelShader > _pixelShader{};
+    ComPtr< ID3DBlob > _psBlob{};
 
-
+    ComPtr< ID3D11InputLayout > _inputLayout;
+    bool _running{ true };
 };
-
-inline extern std::unique_ptr< Engine > GEngine{};

@@ -150,6 +150,7 @@
     <ClInclude Include="framework.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Component.ixx" />
     <ClCompile Include="DontDestoryOnLoad.ixx" />
     <ClCompile Include="DontDestoryOnLoad.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="EnginePch.ixx" />
     <ClCompile Include="EngineTypes.ixx" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Math.ixx" />
     <ClCompile Include="Scene.ixx" />
     <ClCompile Include="SceneManager.ixx" />

@@ -15,7 +15,7 @@ struct Pos
 class Transform : public Component
 {
 public:
-	Transform() = default;
+	Transform();
 	virtual ~Transform() = default;
 
 	void Initialize() final;
@@ -23,12 +23,14 @@ public:
 	void LateUpdate() final;
 	void Render( HDC hdc ) final;
 
-	void SetPos( int x, int y ) { x = x; y = y; }
+    Pos GetPos() const { return _pos; }
+	void SetPos( i32 x, i32 y ) { x = x; y = y; }
 	int GetX() { return _pos.x; }
 	int GetY() { return _pos.y; }
 
 private:
-	Pos _pos;
+    Pos _pos{};
+    Transform* _parent{};
 };
 
 }

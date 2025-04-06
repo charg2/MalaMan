@@ -11,32 +11,29 @@ class GameObject
 {
     enum class EState
     {
-        Active, ///
-        Paused, ///
-        Dead,   ///
-        End     ///
+        Created,
+        Active,
+        Paused,
+        Destroyed,
+        End
     };
 
-
 public:
-	GameObject() = default;
+	GameObject();
 	virtual ~GameObject() = default;
 
+    virtual void Initialize();
+    virtual void Update();
+    virtual void LateUpdate();
+    virtual void Render();
 
-    virtual void Initialize() = 0;
-    virtual void Update() = 0;
-    virtual void LateUpdate() = 0;
-    virtual void Render( HDC hdc );
-
-	void SetPosition( f32 x, f32 y );
-
-    template< typename T >
-    T* GetComponent()
+    template< std::derived_from< Component > TComponent >
+    TComponent* GetComponent()
     {
-        T* component = nullptr;
+        TComponent* component{};
         for ( Component* comp : _components )
         {
-            component = dynamic_cast< T* >( comp );
+            component = dynamic_cast< TComponent* >( comp );
             if ( component )
                 break;
         }
@@ -44,30 +41,25 @@ public:
         return component;
     }
 
-    template< typename T >
-    T* AddComponent()
+    template< std::derived_from< Component > TComponent >
+    TComponent* AddComponent()
     {
-        T* comp = new T();
+        auto* comp{ new TComponent() };
+        comp->Initialize();
         comp->SetOwner( this );
-        _components.emplace_back( comp );
+
+        _components[ static_cast< u32 >( comp->GetType() ) ] = comp;
 
         return comp;
     }
 
-
 private:
-	XMFLOAT2 _pos{};
-	XMFLOAT2 _scale{};
-	XMFLOAT2 _rotation{};
+	//XMFLOAT2 _pos{};
+	//XMFLOAT2 _scale{};
+	//XMFLOAT2 _rotation{};
 
     EState _state{};
     std::vector< Component* > _components;
 };
 
-}
-
-inline void GameObject::SetPosition( f32 x, f32 y )
-{
-	_pos.x = x;
-	_pos.y = y;
 }

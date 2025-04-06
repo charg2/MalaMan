@@ -19,12 +19,12 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render( HDC hdc )
+void Scene::Render()
 {
-	for ( auto* object : _objects )
-	{
-		object->Render( hdc );
-	}
+    for ( auto* object : _objects )
+    {
+        object->Render();
+    }
 }
 
 void Scene::Destroy()

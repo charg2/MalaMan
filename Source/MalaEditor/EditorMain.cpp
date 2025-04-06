@@ -44,7 +44,27 @@ i32 APIENTRY wWinMain( _In_     HINSTANCE hInstance,
     if ( !::InitInstance( hInstance, nCmdShow ) )
         return FALSE;
 
-    return GEngine->Run().wParam;
+    MSG msg{};
+    while ( GEngine->IsRunning() )
+    {
+        // 메시지 큐에서 메시지를 가져옵니다.
+        if ( ::PeekMessageW( &msg, nullptr, 0, 0, PM_REMOVE ) )
+        {
+            if ( msg.message == WM_QUIT )
+                break;
+
+            // 메시지를 처리합니다.
+            ::TranslateMessage( &msg );
+            ::DispatchMessageW( &msg );
+        }
+        else
+        {
+            // 게임 루프를 실행합니다.
+            GEngine->Run();
+        }
+    }
+
+    return msg.wParam;
 }
 
 

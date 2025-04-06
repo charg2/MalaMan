@@ -1,5 +1,12 @@
 import Transform;
 
+import EnginePch;
+
+Transform::Transform()
+: Component{ EComponentType::Transform }
+{
+}
+
 
 void Transform::Initialize()
 {

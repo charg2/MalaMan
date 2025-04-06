@@ -14,11 +14,12 @@ public:
 	static Scene* CreateScene( const std::wstring& name )
 	{
 		T* scene = new T();
-		_scenes.emplace( std::make_pair( name, scene ) );
+        _scenes.emplace( name, scene );
 		scene->SetName( name );
 		scene->Initialize();
 		return scene;
 	}
+
 	template< typename T >
 	static Scene* LoadScene( const std::wstring& name )
 	{
@@ -37,7 +38,7 @@ public:
 	static void Initialize();
 	static void Update();
 	static void LateUpdate();
-	static void Render( HDC hdec );
+    static void Render();
 
 private:
 	inline static std::map< std::wstring, Scene* > _scenes;

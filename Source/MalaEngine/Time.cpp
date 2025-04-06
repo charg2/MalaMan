@@ -16,7 +16,7 @@ void Time::Update()
     QueryPerformanceCounter( &CurrentFrequency );
 
     float differenceFrequency
-        = static_cast<float>( CurrentFrequency.QuadPart - PrevFrequency.QuadPart );
+        = static_cast< f32 >( CurrentFrequency.QuadPart - PrevFrequency.QuadPart );
     DeltaTimeValue = differenceFrequency / static_cast<float>( CpuFrequency.QuadPart );
     PrevFrequency.QuadPart = CurrentFrequency.QuadPart;
 }

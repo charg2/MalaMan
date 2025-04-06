@@ -1,6 +1,5 @@
 export module EnginePch;
 
-
 export import EngineTypes;
 
 /// <summary>
@@ -45,5 +44,9 @@ export using namespace Microsoft::WRL;
 #pragma comment( lib, "DirectXTex\\DirectXTex.lib" )
 #endif
 
-//export import Component;
-//export import Entity;
+export enum class EComponentType
+{
+    Transform,
+
+    Max
+};

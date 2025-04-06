@@ -11,7 +11,7 @@ public:
 	void Initialize() final;
 	void Update() final;
 	void LateUpdate() final;
-	void Render( HDC hdc ) final;
+	void Render() final;
 
 	/*void OnEnter() final
 	void OnExit() override;*/
