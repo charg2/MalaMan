@@ -53,13 +53,13 @@ public:
         return comp;
     }
 
+    ELayerType GetLayerType() const { return _layerType; }
+
 private:
-	//XMFLOAT2 _pos{};
-	//XMFLOAT2 _scale{};
-	//XMFLOAT2 _rotation{};
 
     EState _state{};
     std::vector< Component* > _components;
+    ELayerType _layerType;
 };
 
 }

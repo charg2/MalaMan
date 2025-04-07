@@ -4,7 +4,7 @@ import Graphics;
 import Input;
 import Time;
 import SceneManager;
-
+import RenderDevice_DX11;
 
 Engine::Engine()
 {
@@ -19,12 +19,13 @@ void Engine::Initialize( HWND hwnd )
 	_hwnd = hwnd;
 	_hdc = ::GetDC( hwnd );
 
-	_graphics = std::make_shared< Graphics >( hwnd );
+    _renderDevice = std::make_unique< RenderDevice_DX11 >();
+    _renderDevice->Initialize();
+    _graphics = std::make_shared< Graphics >( hwnd );
 
 	Input::Initialize();
 	CreateGeometry();
 	CreateInputLayout();
-
 }
 
 enum
@@ -58,14 +59,12 @@ void Engine::Render()
 	//// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 	_graphics->RenderBegin();
 
-
     CreateGeometry();
     CreateInputLayout();
 
 	SceneManager::Render();
 
 	_graphics->RenderEnd();
-
 }
 
 void Engine::Destroy()
@@ -89,12 +88,12 @@ void Engine::CreateGeometry()
 	_vertices.resize( 3 );
 
 	_vertices[ 0 ].position = { 0.0f, 0.5f, 0.f };
-	_vertices[ 1 ].position = { 0.0f, -0.5f, 0.f };
+	_vertices[ 1 ].position = { 0.5f, -0.5f, 0.f };
 	_vertices[ 2 ].position = { -0.5f, -0.5f, 0.f };
 
-	_vertices[ 0 ].color = { 1, 0, 0, 1 };
+	_vertices[ 0 ].color = { 0, 1, 0, 1 };
 	_vertices[ 1 ].color = { 1, 0, 0, 1 };
-	_vertices[ 2 ].color = { 1, 0, 0, 1 };
+	_vertices[ 2 ].color = { 0, 0, 1, 1 };
 
 	D3D11_BUFFER_DESC desc
 	{
@@ -132,7 +131,7 @@ void Engine::CreateInputLayout()
 	D3D11_INPUT_ELEMENT_DESC layout[]
 	{
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }, // Color가 12바이트 위치
+		{ "COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }, // Color가 12바이트 위치
 	};
 
 	const i32 count = sizeof( layout ) / sizeof( D3D11_INPUT_ELEMENT_DESC );

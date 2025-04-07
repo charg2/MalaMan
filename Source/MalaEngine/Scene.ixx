@@ -8,6 +8,7 @@ export
 {
 
 class GameObject;
+class Layer;
 
 class Scene : public Entity
 {
@@ -25,10 +26,17 @@ public:
 	virtual void Destroy();
 	virtual void Release();
 
-	void AddGameObject( GameObject* gameObject );
+    void AddGameObject( GameObject* gameObj, const ELayerType type );
+    void EraseGameObject( GameObject* gameObj );
+
+    Layer* GetLayer( const ELayerType type ) const { return _layers[ static_cast<UINT>( type ) ]; }
 
 private:
 	std::vector< GameObject* > _objects{};
+
+    void createLayers();
+
+    std::vector<Layer*> _layers;
 };
 
 }

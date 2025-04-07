@@ -17,14 +17,13 @@ public:
     virtual void Initialize() = 0;
     virtual void Update() = 0;
     virtual void LateUpdate() = 0;
-    virtual void Render( HDC hdc ) = 0;
-    virtual void Render(){};
+    virtual void Render() = 0;
 
     void SetOwner( GameObject* owner ) { _owner = owner; };
     GameObject* GetOwner() { return _owner; }
     EComponentType GetType() const { return _type; }
 
-private:
+private: 
     GameObject* _owner;
     EComponentType _type;
 };

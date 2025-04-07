@@ -24,3 +24,10 @@ void SceneManager::Render()
     _activeScene->Render();
     _dontDestroyOnLoad->Render();
 }
+
+std::vector< GameObject* > SceneManager::GetGameObjects( ELayerType layer )
+{
+    std::vector< GameObject* > gos;
+
+    return gos;
+}

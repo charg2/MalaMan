@@ -1,29 +1,30 @@
 import EnginePch;
 import Scene;
+import Layer;
 import GameObject;
 
 
 void Scene::Update()
 {
-	for ( auto* object : _objects )
+	for ( auto* layer : _layers )
 	{
-		object->Update();
+        layer->Update();
 	}
 }
 
 void Scene::LateUpdate()
 {
-	for ( auto* object : _objects )
+	for ( auto* layer : _layers )
 	{
-		object->LateUpdate();
+        layer->LateUpdate();
 	}
 }
 
 void Scene::Render()
 {
-    for ( auto* object : _objects )
+    for ( auto* layer : _layers )
     {
-        object->Render();
+        layer->Render();
     }
 }
 
@@ -33,4 +34,27 @@ void Scene::Destroy()
 
 void Scene::Release()
 {
+}
+
+void Scene::AddGameObject( GameObject* gameObj, const ELayerType type )
+{
+    _layers[ static_cast< u32 >( type ) ]->AddGameObject( gameObj );
+}
+
+void Scene::EraseGameObject( GameObject* gameObj )
+{
+    if ( !gameObj )
+        return;
+
+    ELayerType layerType = gameObj->GetLayerType();
+    _layers[ static_cast< u32 >( layerType ) ]->EraseGameObject( gameObj );
+}
+
+void Scene::createLayers()
+{
+    _layers.resize( static_cast< u32 >( ELayerType::Max ) );
+    for ( size_t i = 0; i < static_cast< u32 >( ELayerType::Max ); i++ )
+    {
+        _layers[ i ] = new Layer();
+    }
 }

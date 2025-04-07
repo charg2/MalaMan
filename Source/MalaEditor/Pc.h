@@ -1,5 +1,6 @@
 #pragma once
 
+import EnginePch;
 import GameObject;
 
 class Pc final : public GameObject
@@ -16,5 +17,8 @@ class Triangle final : public GameObject
     void Update() final;
     void LateUpdate() final;
     void Render() final;
+
+private:
+    std::vector< Vertex > _vertices{};
 };
 

@@ -2,34 +2,32 @@ export module Transform;
 
 import EnginePch;
 import Component;
+import Math;
 
 export
 {
 
-struct Pos
-{
-	int x;
-	int y;
-};
-
-class Transform : public Component
+class Transform final : public Component
 {
 public:
 	Transform();
-	virtual ~Transform() = default;
+	~Transform() final = default;
 
 	void Initialize() final;
 	void Update() final;
 	void LateUpdate() final;
-	void Render( HDC hdc ) final;
+	void Render() final;
 
-    Pos GetPos() const { return _pos; }
-	void SetPos( i32 x, i32 y ) { x = x; y = y; }
+    Vector2 GetPos() const { return _pos; }
+	void SetPos( f32 x, f32 y ) { _pos.x = x; _pos.y = y; }
 	int GetX() { return _pos.x; }
 	int GetY() { return _pos.y; }
 
 private:
-    Pos _pos{};
+    Vector2 _pos{};
+    Vector2 _scale{};
+    Vector2 _rotation{};
+
     Transform* _parent{};
 };
 

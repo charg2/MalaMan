@@ -44,9 +44,100 @@ export using namespace Microsoft::WRL;
 #pragma comment( lib, "DirectXTex\\DirectXTex.lib" )
 #endif
 
+//struct Vertex
+//{
+//    Vector3 pos;
+//    Vector4 color;
+//    Vector2 uv; //texture coordinate
+//};
+
 export enum class EComponentType
 {
     Transform,
+    RigidBody,
 
     Max
+};
+
+export enum class ELayerType
+{
+    Max
+};
+
+
+export enum class ECBType
+{
+    Transform,
+    None,
+    End,
+};
+
+export enum class ESamplerType
+{
+    Point,
+    Linear,
+    Anisotropic,
+    PostProcess,
+    End,
+};
+
+export enum class ERasterizerState
+{
+    SolidBack,
+    SolidFront,
+    SolidNone,
+    Wireframe,
+    End,
+};
+
+export enum class EBlendState
+{
+    AlphaBlend,
+    OneOne,
+    End,
+};
+
+export enum class ERenderingMode
+{
+    Opaque,
+    CutOut,
+    Transparent,
+    PostProcess,
+    End,
+};
+
+enum class ETextureType
+{
+    Albedo,
+    Normal,
+    Specular,
+    Smoothness,
+    Metallic,
+    Sprite,
+    End,
+};
+
+export enum class EDepthStencilState
+{
+    DepthNone,
+    LessEqual,
+    End,
+};
+
+export enum class EShaderStage
+{
+    VS,		// Vertex Shader
+    HS,		// Hull Shader
+    DS,		// Domain Shader
+    GS,		// Geometry Shader
+    PS,		// Pixel Shader
+    CS,		// Compute Shader
+    All,
+    End,
+};
+
+export enum class EResourceType
+{
+    Shader,
+    Texture,
 };

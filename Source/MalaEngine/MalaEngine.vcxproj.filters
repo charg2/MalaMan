@@ -87,5 +87,35 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="RigidBody.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDevice_DX11.ixx">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDevice_DX11.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

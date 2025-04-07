@@ -40,6 +40,10 @@ public:
 	static void LateUpdate();
     static void Render();
 
+    static Scene* GetActiveScene() { return _activeScene; }
+    static Scene* GetDontDestroyOnLoad() { return _dontDestroyOnLoad; }
+    static std::vector< GameObject* > GetGameObjects( ELayerType layer );
+
 private:
 	inline static std::map< std::wstring, Scene* > _scenes;
 	inline static Scene* _activeScene{};

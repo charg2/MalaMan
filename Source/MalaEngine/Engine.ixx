@@ -6,6 +6,7 @@ import EngineTypes;
 import <string>;
 
 export class Graphics;
+export class RenderDevice_DX11;
 
 export class Engine
 {
@@ -34,6 +35,7 @@ public:
 		ComPtr< ID3DBlob >& blob );
 
     bool IsRunning() { return _running; }
+    HWND GetHwnd() { return _hwnd; }
 
 private:
 	/// 윈도우의 핸들
@@ -45,6 +47,7 @@ private:
 	u32 _height{};
 
 	/// 그래픽스의 포인터
+    std::unique_ptr< RenderDevice_DX11 > _renderDevice;
 	std::shared_ptr< Graphics > _graphics{};
 	std::vector< Vertex > _vertices{};
 	ComPtr< ID3D11Buffer > _vertexBuffer{};
